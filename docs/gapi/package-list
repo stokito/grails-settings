@@ -1,0 +1,7 @@
+DefaultPackage
+grails-app.conf
+grails-app.controllers.org.grails.plugins.settings
+grails-app.domain.org.grails.plugins.settings
+grails-app.services.org.grails.plugins.settings
+grails-app.taglib.org.grails.plugins.settings
+scripts

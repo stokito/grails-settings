@@ -1,2 +1,6 @@
 plugins/core/
 web-app/WEB-INF
+
+# Ignore temporary files
+*~
+

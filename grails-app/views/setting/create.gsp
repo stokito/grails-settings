@@ -1,8 +1,5 @@
-
-
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title><g:message code="setting.create" default="Create Setting" /></title>
         <g:settingHelpBalloons />
@@ -24,7 +21,8 @@
             </div>
             </g:hasErrors>
             <g:form action="save" method="post" >
-                <g:render template="dialog" model="[setting: setting]" contextPath="${pluginContextPath}" />
+                <%-- <g:render template="dialog" model="[setting: setting]" contextPath="${pluginContextPath}" /> --%>
+                <g:render template="dialog" model="[setting: setting]" />
                 <div class="buttons">
                     <span class="button"><input class="save" type="submit" value="${message(code:'create', 'default':'Create')}" /></span>
                 </div>

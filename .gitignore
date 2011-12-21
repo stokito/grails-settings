@@ -1,5 +1,7 @@
 plugins/core/
 web-app/WEB-INF
+target/
+*.zip
 
 # Ignore temporary files
 *~

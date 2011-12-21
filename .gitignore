@@ -5,4 +5,4 @@ target/
 
 # Ignore temporary files
 *~
-
+.DS_Store

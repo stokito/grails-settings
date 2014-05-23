@@ -1,5 +1,3 @@
-
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -23,25 +21,17 @@
                 <table>
                     <thead>
                         <tr>
-
                    	        <g:sortableColumn property="code" title="Code" titleKey="setting.code" />
-
                    	        <g:sortableColumn property="type" title="Type" titleKey="setting.type" />
-
                    	        <g:sortableColumn property="value" title="Value" titleKey="setting.value" />
-
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${settingList}" status="i" var="setting">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-
                             <td><g:link action="show" id="${setting.id}">${fieldValue(bean:setting, field:'code')}</g:link></td>
-
                             <td><g:message code="setting.type.${setting.type}" default="${setting.type}" encodeAs="HTML" /></td>
-
                             <td>${fieldValue(bean:setting, field:'value')}</td>
-
                         </tr>
                     </g:each>
                     </tbody>

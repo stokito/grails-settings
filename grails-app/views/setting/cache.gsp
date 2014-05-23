@@ -19,49 +19,33 @@
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.cache.max" default="Maximum cache size" />:</td>
-
                             <td valign="top" class="value"><g:formatNumber number="${stats.max / 1024}" format="0.00"/></td>
-
                             <td><g:formatNumber number="${1}" format="0.00%"/></td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.cache.size" default="Current cache size" />:</td>
-
                             <td valign="top" class="value"><g:formatNumber number="${stats.size / 1024}" format="0.00"/></td>
-
                             <td><g:formatNumber number="${stats.size / stats.max}" format="0.00%"/></td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.cache.count" default="Current number of entries" />:</td>
-
                             <td valign="top" class="value">${stats.count}</td>
-
                             <td>&nbsp;</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.cache.hits" default="Number of hits" />:</td>
-
                             <td valign="top" class="value">${stats.hits}</td>
-
                             <td><g:formatNumber number="${(stats.hits == 0) ? 0 : stats.hits / (stats.hits + stats.misses)}" format="0.00%"/></td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.cache.misses" default="Number of misses" />:</td>
-
                             <td valign="top" class="value">${stats.misses}</td>
-
                             <td><g:formatNumber number="${(stats.misses == 0) ? 0 : stats.misses / (stats.hits + stats.misses)}" format="0.00%"/></td>
-
                         </tr>
-
                     </tbody>
                 </table>
                 </g:if>

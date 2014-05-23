@@ -1,5 +1,3 @@
-
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -21,56 +19,40 @@
             <div class="dialog">
                 <table>
                     <tbody>
-
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.id" default="Id" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'id')}</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.code" default="Code" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'code')}</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.type" default="Type" />:</td>
-
                             <td valign="top" class="value"><g:message code="setting.type.${setting.type}" default="${setting.type}" encodeAs="HTML" /></td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.value" default="Value" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'value')}</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.dateCreated" default="Date Created" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'dateCreated')}</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.lastUpdated" default="Last Updated" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'lastUpdated')}</td>
-
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.version" default="Version" />:</td>
-
                             <td valign="top" class="value">${fieldValue(bean:setting, field:'version')}</td>
-
                         </tr>
-
                     </tbody>
                 </table>
             </div>

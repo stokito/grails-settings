@@ -16,7 +16,7 @@
                     <label for="type"><g:message code="setting.type" default="Type" />:</label>
                 </td>
                 <td valign="top" class="value ${hasErrors(bean:setting,field:'type','errors')}">
-                    <g:select id="type" name="type" from="${setting.constraints.type.inList}" value="${setting.type}" valueMessagePrefix="setting.type" ></g:select>&nbsp;<g:settingHelpBalloon code="setting.type" />
+                    <g:select id="type" name="type" from="${setting.constraints.type.inList}" value="${setting.type}" valueMessagePrefix="setting.type"/>&nbsp;<g:settingHelpBalloon code="setting.type" />
                 </td>
             </tr>
 

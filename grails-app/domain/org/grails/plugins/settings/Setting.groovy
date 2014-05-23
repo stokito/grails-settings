@@ -31,13 +31,14 @@ class Setting {
         code(blank: false, size: 1..100, unique: true)
         type(blank: false, inList: ['string', 'integer', 'decimal', 'date'])
         value(blank: false, size: 1..100, validator: { val, obj ->
-            Setting.decodeValue(obj.type, val) != null })
+            Setting.decodeValue(obj.type, val) != null
+        })
     }
 
     static valueFor(String code) {
         if (!loaded) load()
         if (!code) return null
-        def val
+        def val = null
         if (maxCacheSize > 0) {
             synchronized (cache) {
                 val = cache.get(code)
@@ -48,7 +49,6 @@ class Setting {
                 }
             }
         }
-
         if (!val) {
             val = Setting.findByCode(code)
             if (val) {

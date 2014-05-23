@@ -8,12 +8,11 @@ class SettingController {
     static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST', reset: 'POST']
     static defaultAction = 'list'
     private static loaded = false
-
-    def settingService
+    def pluginManager
 
     def list() {
         if (!loaded) {
-            if (settingService.hasPlugin("localizations")) {
+            if (pluginManager.hasGrailsPlugin('localizations')) {
                 def test = message(code: "setting.id", default: "_missing!")
                 if (test == "_missing!") {
                     def loc = ((GrailsDomainClass) ApplicationHolder.getApplication().getArtefact(DomainClassArtefactHandler.TYPE, "org.grails.plugins.localization.Localization")).newInstance()
@@ -25,7 +24,7 @@ class SettingController {
         params.max = (params.max && params.max.toInteger() > 0) ? Math.min(params.max.toInteger(), Setting.valueFor("pagination.max", 50)) : Setting.valueFor("pagination.default", 20)
         params.sort = params.sort ?: 'code'
         List<Setting> lst
-        if (settingService.hasPlugin("criteria") || settingService.hasPlugin("drilldowns")) {
+        if (pluginManager.hasGrailsPlugin('criteria') || pluginManager.hasGrailsPlugin('drilldowns')) {
             lst = Setting.selectList(session, params)
         } else {
             lst = Setting.list(params)

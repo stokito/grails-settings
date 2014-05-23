@@ -1,23 +1,22 @@
 package org.grails.plugins.settings
 
 class SettingTagLib {
-
-    SettingService settingService
+    def pluginManager
 
     def settingHelpBalloons = { attrs, body ->
-        if (settingService.hasPlugin("helpBalloons")) {
+        if (pluginManager.hasGrailsPlugin('helpBalloons')) {
             out << g.helpBalloons(attrs)
         }
     }
 
     def settingHelpBalloon = { attrs, body ->
-        if (settingService.hasPlugin("helpBalloons")) {
+        if (pluginManager.hasGrailsPlugin('helpBalloons')) {
             out << g.helpBalloon(attrs)
         }
     }
 
     def settingCriteria = { attrs, body ->
-        if (settingService.hasPlugin("criteria")) {
+        if (pluginManager.hasGrailsPlugin('criteria')) {
             out << """<div class="criteria">\n"""
             out << g.criteria(attrs)
             out << """</div>\n"""
@@ -25,12 +24,12 @@ class SettingTagLib {
     }
 
     def settingPaginate = { attrs, body ->
-        attrs.total = (settingService.hasPlugin("criteria") || settingService.hasPlugin("drilldown")) ? Setting.selectCount(session, params) : Setting.count()
+        attrs.total = (pluginManager.hasGrailsPlugin('criteria') || pluginManager.hasGrailsPlugin('drilldown')) ? Setting.selectCount(session, params) : Setting.count()
         out << g.paginate(attrs)
     }
 
     def settingMenuButton = { attrs, body ->
-        if (settingService.hasPlugin("menus")) {
+        if (pluginManager.hasGrailsPlugin('menus')) {
             out << '<span class="menuButton">'
             out << g.link(class: "menu", controller: "menu", action: "display") {
                 g.message(code: "menu.display", default: "Menu")

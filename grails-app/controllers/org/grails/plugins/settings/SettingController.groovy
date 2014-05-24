@@ -1,6 +1,5 @@
 package org.grails.plugins.settings
 
-import org.codehaus.groovy.grails.commons.ApplicationHolder
 import org.codehaus.groovy.grails.commons.DomainClassArtefactHandler
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 
@@ -9,20 +8,21 @@ class SettingController {
     static defaultAction = 'list'
     private static loaded = false
     def pluginManager
+    def grailsApplication
 
-    def list() {
+    def list(int max, String sort) {
         if (!loaded) {
             if (pluginManager.hasGrailsPlugin('localizations')) {
-                def test = message(code: "setting.id", default: "_missing!")
-                if (test == "_missing!") {
-                    def loc = ((GrailsDomainClass) ApplicationHolder.getApplication().getArtefact(DomainClassArtefactHandler.TYPE, "org.grails.plugins.localization.Localization")).newInstance()
+                String test = message(code: 'setting.id', default: "_missing!")
+                if (test == '_missing!') {
+                    def loc = ((GrailsDomainClass) grailsApplication.getArtefact(DomainClassArtefactHandler.TYPE, 'org.grails.plugins.localization.Localization')).newInstance()
                     loc.loadPluginData("settings")
                 }
             }
             loaded = true
         }
-        params.max = (params.max && params.max.toInteger() > 0) ? Math.min(params.max.toInteger(), Setting.valueFor("pagination.max", 50)) : Setting.valueFor("pagination.default", 20)
-        params.sort = params.sort ?: 'code'
+        params.max = max ? Math.min(max, Setting.valueFor('pagination.max', 50)) : Setting.valueFor('pagination.default', 20)
+        params.sort = sort ?: 'code'
         List<Setting> lst
         if (pluginManager.hasGrailsPlugin('criteria') || pluginManager.hasGrailsPlugin('drilldowns')) {
             lst = Setting.selectList(session, params)
@@ -97,8 +97,7 @@ class SettingController {
     }
 
     def create() {
-        Setting setting = new Setting()
-        setting.properties = params
+        Setting setting = new Setting(params)
         return ['setting': setting]
     }
 

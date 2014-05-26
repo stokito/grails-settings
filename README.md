@@ -8,7 +8,7 @@ This is an update version of the official [Grails settings plugin](http://www.gr
 
 Allows for the creation, maintenance and use of system-wide application settings (global constants) stored in a database.
 The values of the various settings can be of type `String`, `Integer`, `BigDecimal` or `Date`.
-The usual List, Show, Edit and Create views are included and, after installing the plugin, will be available at a URL such as `http://myServer/myApp/setting/list` etc. 
+The usual List, Show, Edit and Create views are included and, after installing the plugin, will be available at a URL such as `http://example.com/myApp/setting/list` etc. 
 These views assume you are using a layout called `main`.
 
 ## Installation
@@ -77,7 +77,7 @@ Note that both the `default` and `encodeAs` attributes are optional but also be 
 
 ## Compatibility
 
-This plugin was written using Java version 1.6u17 and Grails version 1.2.0.
+This plugin was written using Java version 1.6u17 and Grails version 2.0.
 
 If you have the [help-balloons plugin](http://grails.org/plugin/help-balloons), on-screen help will be available when creating or editing settings, 
 otherwise you will have to read the help texts in the `settings.properties` file to determine what is expected in each field. 
@@ -87,8 +87,10 @@ If you have the [localizations plugin](http://grails.org/plugin/localizations) a
 otherwise the `settings.properties` resource bundle in your `i18n` directory will be used.
 
 ## History
-* Version 1.4. (2010-05-12) Update to Grails v1.3
-* Version 1.3. (2009-12-30) Update to Grails v1.2
-* Version 1.2. (2009-05-03) Added setting tag for ease of use in GSPs
-* Version 1.1. (2009-04-01) Update to Grails v1.1 and packages
-* Version 1.0. (2008-11-18) Initial release
+* Version 1.6 (2011-12-11) Reformat and cosmetic fixes by @stokito 
+* Version 1.5 (2011-12-11) Update to Grails 2.0 by @sprohaszka
+* Version 1.4 (2010-05-12) Update to Grails v1.3
+* Version 1.3 (2009-12-30) Update to Grails v1.2
+* Version 1.2 (2009-05-03) Added setting tag for ease of use in GSPs
+* Version 1.1 (2009-04-01) Update to Grails v1.1 and packages
+* Version 1.0 (2008-11-18) Initial release

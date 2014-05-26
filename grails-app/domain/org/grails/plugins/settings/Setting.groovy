@@ -36,7 +36,9 @@ class Setting {
     }
 
     static valueFor(String code) {
-        if (!loaded) load()
+        if (!loaded) {
+            load()
+        }
         if (!code) return null
         def val = null
         if (maxCacheSize > 0) {
@@ -54,13 +56,15 @@ class Setting {
             if (val) {
                 val = Setting.decodeValue(val.type, val.value)
             }
-            if (!val) val = missingValue
+            val = val ?: missingValue
             if (maxCacheSize > 0) {
                 synchronized (cache) {
                     // Put it in the cache
                     def prev = cache.put(code, val)
                     // Another user may have inserted it while we weren't looking
-                    if (prev != null) currentCacheSize -= code.length() + valSize(prev)
+                    if (prev != null) {
+                        currentCacheSize -= code.length() + valSize(prev)
+                    }
                     // Increment the cache size with our data
                     currentCacheSize += code.length() + valSize(val)
                     // Adjust the cache size if required

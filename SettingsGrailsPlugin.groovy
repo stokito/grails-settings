@@ -1,16 +1,16 @@
 class SettingsGrailsPlugin {
-    def version = "1.6-SNAPSHOT"
+    def version = "1.6"
     String grailsVersion = '2.0.0 > *'
     def dependsOn = [:]
     def author = "Paul Fernley"
     def authorEmail = "paul@pfernley.orangehome.co.uk"
-    def title = "Application settings (global constants) plugin"
+    def title = "Application settings (global constants or variables) plugin"
     def description = '''\
 Allows for the creation, maintenance and use of system-wide application settings
 (global constants) stored in a database. The values of the various settings can
-be of type String, Intger, BigDecimal or Date. The usual List, Show, Edit and
+be of type String, Integer, BigDecimal or Date. The usual List, Show, Edit and
 Create views are included and, after installing the plugin, will be available at
-a URL such as http://myServer/myApp/setting/list etc. These views assume you are
+a URL such as http://example.com/myApp/setting/list etc. These views assume you are
 using a layout called 'main'.
 '''
     def documentation = "http://grails.org/plugin/settings"

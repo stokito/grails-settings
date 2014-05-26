@@ -13,10 +13,22 @@ These views assume you are using a layout called `main`.
 
 ## Installation
 
-Execute the following from your application directory:
+Add the following plugin dependencies to your `BuildConfig.groovy`
+```groovy
+grails.project.dependency.resolution = {
+    plugins {
+        ...
+        compile ":settings:1.6"
+        ...
+    }
+}
+```
+
+Or execute the following from your application directory:
 ```
 grails install-plugin settings
 ```
+
 
 The plugin creates one domain called `Setting`. It also copies a properties file called `settings.properties` to the `i18n` directory of your application overwriting any file of the same name. 
 After installation, the `Setting` table in your database should have a unique index on the `code` column, but since Hibernate may or may not create this index, you are advised to check it exists otherwise performance may suffer. 

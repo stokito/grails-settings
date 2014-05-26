@@ -39,12 +39,14 @@ The default maximum cache size is 8kb, but memory is only used as is needed. If 
 settings.cache.size.kb = 32
 ```
 
-The above example `Config.groovy` entry increases the cache size to 32kb. Setting the cache size to zero disables caching with a consequent increase in databases activity. You can check the cache statistics using a URL such as: http://myServer/myApp/setting/cache. Note that you may have to refresh your browser window to see the most up to date statistics.
+The above example `Config.groovy` entry increases the cache size to 32kb. Setting the cache size to zero disables caching with a consequent increase in databases activity. 
+You can check the cache statistics using a URL such as: `http://example.com/myApp/setting/cache`.
+Note that you may have to refresh your browser window to see the most up to date statistics.
 
 
 ## Usage
 
-The components of the plugin are in a package called org.grails.plugins.settings and any class that wishes to access the components directly must include the following:
+The components of the plugin are in a package called `org.grails.plugins.settings` and any class that wishes to access the components directly must include the following:
 ```
 import org.grails.plugins.settings.*
 ```

@@ -48,7 +48,6 @@ class SettingController {
         Setting setting = Setting.get(id)
         if (setting) {
             setting.delete()
-            Setting.resetThis(setting.code)
             flash.message = "setting.deleted"
             flash.args = [id]
             flash.defaultMessage = "Setting ${id} deleted"
@@ -79,10 +78,6 @@ class SettingController {
             String oldCode = setting.code
             setting.properties = params
             if (!setting.hasErrors() && setting.save()) {
-                Setting.resetThis(oldCode)
-                if (setting.code != oldCode) {
-                    Setting.resetThis(setting.code)
-                }
                 flash.message = 'setting.updated'
                 flash.args = [id]
                 flash.defaultMessage = "Setting ${id} updated"
@@ -106,7 +101,6 @@ class SettingController {
     def save() {
         Setting setting = new Setting(params)
         if (!setting.hasErrors() && setting.save()) {
-            Setting.resetThis(setting.code)
             flash.message = "setting.created"
             flash.args = ["${setting.id}"]
             flash.defaultMessage = "Setting ${setting.id} created"
@@ -114,14 +108,5 @@ class SettingController {
         } else {
             render(view: 'create', model: [setting: setting])
         }
-    }
-
-    def cache() {
-        return [stats: Setting.statistics()]
-    }
-
-    def reset() {
-        Setting.resetAll()
-        redirect(action: 'cache')
     }
 }

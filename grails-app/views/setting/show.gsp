@@ -14,19 +14,19 @@
         <div class="body">
             <h1><g:message code="setting.show" default="Show Setting" /></h1>
             <g:if test="${flash.message}">
-            <div class="message"><g:message code="${flash.message}" args="${flash.args}" default="${flash.defaultMessage}" /></div>
+                <div class="message"><g:message code="${flash.message}" args="${flash.args}" default="${flash.defaultMessage}" /></div>
             </g:if>
             <div class="dialog">
                 <table>
                     <tbody>
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.id" default="Id" />:</td>
-                            <td valign="top" class="value">${fieldValue(bean:setting, field:'id')}</td>
+                            <td valign="top" class="value">${setting.id}</td>
                         </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.code" default="Code" />:</td>
-                            <td valign="top" class="value">${fieldValue(bean:setting, field:'code')}</td>
+                            <td valign="top" class="value">${setting.code.encodeAsHTML()}</td>
                         </tr>
 
                         <tr class="prop">
@@ -36,7 +36,7 @@
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.value" default="Value" />:</td>
-                            <td valign="top" class="value">${fieldValue(bean:setting, field:'value')}</td>
+                            <td valign="top" class="value">${setting.value.encodeAsHTML()}</td>
                         </tr>
 
                         <tr class="prop">
@@ -51,14 +51,14 @@
 
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="setting.version" default="Version" />:</td>
-                            <td valign="top" class="value">${fieldValue(bean:setting, field:'version')}</td>
+                            <td valign="top" class="value">${setting.version}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="buttons">
                 <g:form>
-                    <input type="hidden" name="id" value="${setting?.id}" />
+                    <input type="hidden" name="id" value="${setting.id}" />
                     <span class="button"><g:actionSubmit class="edit" action="Edit" value="${message(code:'edit', 'default':'Edit')}" /></span>
                     <span class="button"><g:actionSubmit class="delete" onclick="return confirm('${message(code:'delete.confirm', 'default':'Are you sure?')}');" action="Delete" value="${message(code:'delete', 'default':'Delete')}" /></span>
                 </g:form>

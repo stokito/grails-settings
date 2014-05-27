@@ -18,7 +18,7 @@ Add the following plugin dependencies to your `BuildConfig.groovy`
 grails.project.dependency.resolution = {
     plugins {
         ...
-        compile ":settings:1.6"
+        compile ":settings:1.7"
         ...
     }
 }
@@ -77,7 +77,7 @@ Note that both the `default` and `encodeAs` attributes are optional but also be 
 
 ## Compatibility
 
-This plugin was written using Java version 1.6u17 and Grails version 2.0.
+This plugin was written using Java version 1.7 and Grails version 2.2.3.
 
 If you have the [help-balloons plugin](http://grails.org/plugin/help-balloons), on-screen help will be available when creating or editing settings, 
 otherwise you will have to read the help texts in the `settings.properties` file to determine what is expected in each field. 
@@ -87,7 +87,8 @@ If you have the [localizations plugin](http://grails.org/plugin/localizations) a
 otherwise the `settings.properties` resource bundle in your `i18n` directory will be used.
 
 ## History
-* Version 1.6 (2011-12-11) Reformat and cosmetic fixes by @stokito 
+* Version 1.7 (2014-05-27) Update to Grails 2.2.3, using Cache plugin. Removed actions `/setting/reset` and `/setting/cache`, all cache methods was deprecated
+* Version 1.6 (2014-05-26) Reformat and cosmetic fixes by @stokito 
 * Version 1.5 (2011-12-11) Update to Grails 2.0 by @sprohaszka
 * Version 1.4 (2010-05-12) Update to Grails v1.3
 * Version 1.3 (2009-12-30) Update to Grails v1.2

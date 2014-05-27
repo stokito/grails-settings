@@ -30,19 +30,8 @@ grails install-plugin settings
 ```
 
 
-The plugin creates one domain called `Setting`. It also copies a properties file called `settings.properties` to the `i18n` directory of your application overwriting any file of the same name. 
+The plugin creates one domain called `Setting`. 
 After installation, the `Setting` table in your database should have a unique index on the `code` column, but since Hibernate may or may not create this index, you are advised to check it exists otherwise performance may suffer. 
-Settings are held in memory in a 'least recently used cache' for fast repeated access.
-
-The default maximum cache size is 8kb, but memory is only used as is needed. If you wish to alter the maximum size (amount of memory) used by the cache, you may do so by making an entry similar to the following in your Config.groovy file:
-```groovy
-settings.cache.size.kb = 32
-```
-
-The above example `Config.groovy` entry increases the cache size to 32kb. Setting the cache size to zero disables caching with a consequent increase in databases activity. 
-You can check the cache statistics using a URL such as: `http://example.com/myApp/setting/cache`.
-Note that you may have to refresh your browser window to see the most up to date statistics.
-
 
 ## Usage
 

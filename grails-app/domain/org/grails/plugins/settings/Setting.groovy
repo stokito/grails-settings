@@ -14,6 +14,7 @@ class Setting {
         columns {
             code index: 'setting_code_idx'
         }
+        cache(true)
     }
 
     static constraints = {

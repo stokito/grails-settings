@@ -80,7 +80,9 @@ class SettingController {
             setting.properties = params
             if (!setting.hasErrors() && setting.save()) {
                 Setting.resetThis(oldCode)
-                if (setting.code != oldCode) Setting.resetThis(setting.code)
+                if (setting.code != oldCode) {
+                    Setting.resetThis(setting.code)
+                }
                 flash.message = 'setting.updated'
                 flash.args = [id]
                 flash.defaultMessage = "Setting ${id} updated"

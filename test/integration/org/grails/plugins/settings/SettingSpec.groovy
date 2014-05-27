@@ -28,9 +28,13 @@ class SettingSpec extends IntegrationSpec {
     }
 
     void 'valueFor() with default'() {
-        when:
-        def setting = Setting.valueFor('setting1', 'default value')
-        then:
-        setting == 'default value'
+        expect:
+        Setting.valueFor('settingInt', 1) == 1
+        Setting.valueFor('settingStr', 'string value') == 'string value'
+        Setting.valueFor('settingDec', 1.5) == 1.5
+        Date settingDate = Setting.valueFor('settingDate', Date.parse('yyyy-MM-dd', '2000-01-31'))
+        settingDate.date == 31
+        settingDate.month == 0
+        settingDate.year + 1900 == 2000
     }
 }

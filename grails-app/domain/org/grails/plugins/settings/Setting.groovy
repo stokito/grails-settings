@@ -1,20 +1,9 @@
 package org.grails.plugins.settings
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
 class Setting {
-    private static loaded = false
-    private static cache = new LinkedHashMap(16, 0.75F, true)
-    /** Cache size in KB (default is 8kb) */
-    private static long maxCacheSize = 8L * 1024L
-    private static long currentCacheSize = 0L
-    /** an impossible value signifying that no such code exists in the database */
-    private static final missingValue = "\b"
-    private static long cacheHits = 0L
-    private static long cacheMisses = 0L
-
     String code
     String type
     String value
@@ -36,82 +25,21 @@ class Setting {
     }
 
     static valueFor(String code) {
-        if (!loaded) {
-            load()
-        }
-        if (!code) return null
-        def val = null
-        if (maxCacheSize > 0) {
-            synchronized (cache) {
-                val = cache.get(code)
-                if (val) {
-                    cacheHits++
-                } else {
-                    cacheMisses++
-                }
-            }
-        }
-        if (!val) {
-            val = Setting.findByCode(code)
-            if (val) {
-                val = Setting.decodeValue(val.type, val.value)
-            }
-            val = val ?: missingValue
-            if (maxCacheSize > 0) {
-                synchronized (cache) {
-                    // Put it in the cache
-                    def prev = cache.put(code, val)
-                    // Another user may have inserted it while we weren't looking
-                    if (prev != null) {
-                        currentCacheSize -= code.length() + valSize(prev)
-                    }
-                    // Increment the cache size with our data
-                    currentCacheSize += code.length() + valSize(val)
-                    // Adjust the cache size if required
-                    if (currentCacheSize > maxCacheSize) {
-                        def entries = cache.entrySet().iterator()
-                        def entry
-                        while (entries.hasNext() && currentCacheSize > maxCacheSize) {
-                            entry = entries.next()
-                            currentCacheSize -= entry.getKey().length() + valSize(entry.getValue())
-                            entries.remove()
-                        }
-                    }
-                }
-            }
-        }
-        return (val != missingValue) ? val : null
+        Setting setting = Setting.findByCode(code)
+        return setting ? Setting.decodeValue(setting.type, setting.value) : null
     }
 
     static valueFor(String code, Object dflt) {
         def val = valueFor(code)
-        return (val != null) ? val : dflt
+        return val != null ? val : dflt
     }
 
+    @Deprecated
     static resetAll() {
-        synchronized (cache) {
-            cache.clear()
-            currentCacheSize = 0L
-            cacheHits = 0L
-            cacheMisses = 0L
-        }
     }
 
+    @Deprecated
     static resetThis(String code) {
-        synchronized (cache) {
-            def val = cache.remove(code)
-            if (val) {
-                currentCacheSize -= code.length() + valSize(val)
-            }
-        }
-    }
-
-    static load() {
-        def size = ConfigurationHolder.config.settings.cache.size.kb
-        if (size && size instanceof Integer && size >= 0 && size <= 1024 * 1024) {
-            maxCacheSize = size * 1024L
-        }
-        loaded = true
     }
 
     private static decodeValue(String type, String val) {
@@ -131,7 +59,7 @@ class Setting {
                     break
                 case "date":
                     try {
-                        def fmt = (val.length() == 10) ? "yyyy-MM-dd" : "yyyy-MM-dd HH:mm"
+                        def fmt = val.length() == 10 ? 'yyyy-MM-dd' : 'yyyy-MM-dd HH:mm'
                         return new SimpleDateFormat(fmt, Locale.US).parse(val)
                     } catch (ParseException pe) {
                     }
@@ -144,34 +72,11 @@ class Setting {
         return null
     }
 
+    @Deprecated
     static valSize(val) {
-        if (val == null) {
-            return 0
-        }
-        if (val instanceof String) {
-            return val.length()
-        }
-        if (val instanceof Integer) {
-            return 4
-        }
-        if (val instanceof BigDecimal) {
-            return 8
-        }
-        if (val instanceof Date) {
-            return 8
-        }
-        return 8    // A reasonable default
     }
 
+    @Deprecated
     static statistics() {
-        def stats = [:]
-        synchronized (cache) {
-            stats.max = maxCacheSize
-            stats.size = currentCacheSize
-            stats.count = cache.size()
-            stats.hits = cacheHits
-            stats.misses = cacheMisses
-        }
-        return stats
     }
 }

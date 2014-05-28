@@ -1,3 +1,8 @@
+grails.project.repos.default = 'bintray-stokito-maven-grails-settings'
+grails.project.repos.'bintray-stokito-maven-grails-settings'.url = 'https://api.bintray.com/maven/stokito/maven/grails-settings'
+grails.project.repos.'bintray-stokito-maven-grails-settings'.type = 'maven'
+grails.project.repos.'bintray-stokito-maven-grails-settings'.portal = 'stokitoBintray'
+
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -25,8 +30,9 @@ grails.project.dependency.resolution = {
             export = false
         }
         runtime ":hibernate:$grailsVersion"
-//TODO        compile ':cache:1.1.1'
+        runtime ':cache:1.1.1'
         runtime ":resources:1.2"
+        runtime ":spring-security-core:1.2.7.3"
         test(":spock:0.7") {
             exclude "spock-grails-support"
         }

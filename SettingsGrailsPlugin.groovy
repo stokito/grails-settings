@@ -1,5 +1,5 @@
 class SettingsGrailsPlugin {
-    def version = "1.7"
+    def version = "2.0"
     String grailsVersion = '2.2.3 > *'
     def dependsOn = [:]
     def author = "Paul Fernley"

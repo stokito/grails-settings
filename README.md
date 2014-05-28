@@ -8,8 +8,9 @@ This is an update version of the official [Grails settings plugin](http://www.gr
 
 Allows for the creation, maintenance and use of system-wide application settings (global constants) stored in a database.
 The values of the various settings can be of type `String`, `Integer`, `BigDecimal` or `Date`.
-The usual List, Show, Edit and Create views are included and, after installing the plugin, will be available at a URL such as `http://example.com/myApp/setting/list` etc. 
+The usual List, Show, Edit and Create views are included and, after installing the plugin, will be available at a URL such as `http://example.com/myApp/setting/list` etc.
 These views assume you are using a layout called `main`.
+Also this controller is secured by `ROLE_ADMIN` role.
 
 ## Installation
 
@@ -18,7 +19,7 @@ Add the following plugin dependencies to your `BuildConfig.groovy`
 grails.project.dependency.resolution = {
     plugins {
         ...
-        compile ":settings:1.7"
+        compile ":settings:2.0"
         ...
     }
 }
@@ -31,7 +32,8 @@ grails install-plugin settings
 
 
 The plugin creates one domain called `Setting`. 
-After installation, the `Setting` table in your database should have a unique index on the `code` column, but since Hibernate may or may not create this index, you are advised to check it exists otherwise performance may suffer. 
+After installation, the `Setting` table in your database should have a unique index on the `code` column.
+But since Hibernate may or may not create this index, you are advised to check it exists otherwise performance may suffer.
 
 ## Usage
 
@@ -76,6 +78,7 @@ If you have the [localizations plugin](http://grails.org/plugin/localizations) a
 otherwise the `settings.properties` resource bundle in your `i18n` directory will be used.
 
 ## History
+* Version 2.0 (2014-05-28) Using of Spring Security plugin
 * Version 1.7 (2014-05-27) Update to Grails 2.2.3, using Cache plugin. Removed actions `/setting/reset` and `/setting/cache`, all cache methods was deprecated
 * Version 1.6 (2014-05-26) Reformat and cosmetic fixes by @stokito 
 * Version 1.5 (2011-12-11) Update to Grails 2.0 by @sprohaszka

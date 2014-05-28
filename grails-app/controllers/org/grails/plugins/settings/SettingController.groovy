@@ -1,8 +1,10 @@
 package org.grails.plugins.settings
 
+import grails.plugins.springsecurity.Secured
 import org.codehaus.groovy.grails.commons.DomainClassArtefactHandler
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 
+@Secured('ROLE_ADMIN')
 class SettingController {
     static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST', reset: 'POST']
     static defaultAction = 'list'

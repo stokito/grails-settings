@@ -25,13 +25,13 @@ grails.project.dependency.resolution = {
 
     plugins {
         build(":tomcat:$grailsVersion",
-              ":release:2.2.1",
-              ":rest-client-builder:1.0.3") {
+                ":release:2.2.1",
+                ":rest-client-builder:1.0.3") {
             export = false
         }
         runtime ":hibernate:$grailsVersion"
         runtime ':cache:1.1.1'
-        runtime ":resources:1.2"
+        runtime ":resources:1.2.8"
         runtime ":spring-security-core:1.2.7.3"
         test(":spock:0.7") {
             exclude "spock-grails-support"

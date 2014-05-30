@@ -1,6 +1,6 @@
 class SettingsGrailsPlugin {
-    def version = "2.0.1"
-    String grailsVersion = '2.2.3 > *'
+    def version = "2.0.2"
+    String grailsVersion = '2.3 > *'
     def dependsOn = [:]
     def author = "Paul Fernley"
     def authorEmail = "paul@pfernley.orangehome.co.uk"

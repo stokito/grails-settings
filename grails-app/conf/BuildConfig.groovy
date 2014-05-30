@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
         }
         runtime ":hibernate:$grailsVersion"
         runtime ':cache:1.1.1'
-        runtime ":resources:1.2.8"
+        runtime ":resources:1.1.6"
         runtime ":spring-security-core:1.2.7.3"
         test(":spock:0.7") {
             exclude "spock-grails-support"
